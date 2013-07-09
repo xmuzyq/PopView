@@ -2,4 +2,22 @@ PopView
 =======
 
 Demo Screenshot:
-<p align="center"><img src="https://raw.github.com/alikaragoz/MCSwipeTableViewCell/master/github-assets/mcswipe-front.png"/></p>
+<p align="center"><img src="http://openassets.oss.aliyuncs.com/popView.gif"/></p>
+
+
+##Usage
+
+Your viewController:
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(presentView)];
+    [self.view addGestureRecognizer:tapGestureRecognizer];
+    tapGestureRecognizer.delegate=self;
+
+    _popViewController = [[PopViewController alloc] initWithPopViewClass:NSStringFromClass(PopDemoView.class)];
+    [_popViewController setup:self delegate:self];
+}
+
+- (void)presentView {
+    [_popViewController presentInView:self.view animation:YES];
+}
